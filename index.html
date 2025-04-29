@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Moda Elegante - Sua Loja de Roupas Premium</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* Custom CSS for additional styling */
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .hero-section {
+      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .edit-mode {
+      outline: 2px dashed #3b82f6;
+      position: relative;
+    }
+
+    .edit-btn {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      background: #3b82f6;
+      color: white;
+      border-radius: 50%;
+      width: 25px;
+      height: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 12px;
+      z-index: 10;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-50 font-sans">
+  <!-- Admin Controls -->
+  <div class="bg-gray-800 text-white p-2 flex justify-between items-center">
+    <span class="text-sm">Modo Edição</span>
+    <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" id="editToggle" class="sr-only peer">
+            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+        </label>
+  </div>
+
+  <!-- Header -->
+  <header class="bg-white shadow-sm sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+      <div class="editable" data-id="logo">
+        <h1 class="text-2xl font-bold text-gray-800">Moda Elegante</h1>
+      </div>
+      <nav class="hidden md:flex space-x-8 editable" data-id="main-nav">
+        <a href="#destaques" class="text-gray-700 hover:text-blue-600 font-medium">Destaques</a>
+        <a href="#colecao" class="text-gray-700 hover:text-blue-600 font-medium">Coleção</a>
+        <a href="#sobre" class="text-gray-700 hover:text-blue-600 font-medium">Sobre Nós</a>
+        <a href="#contato" class="text-gray-700 hover:text-blue-600 font-medium">Contato</a>
+      </nav>
+      <div class="flex items-center space-x-4">
+        <button class="p-2 text-gray-700 hover:text-blue-600">
+                    <i class="fas fa-search"></i>
+                </button>
+        <button class="p-2 text-gray-700 hover:text-blue-600">
+                    <i class="fas fa-shopping-cart"></i>
+                </button>
+        <button class="md:hidden p-2 text-gray-700" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="md:hidden bg-white hidden" id="mobileMenu">
+      <div class="container mx-auto px-4 py-2 flex flex-col space-y-2 editable" data-id="mobile-nav">
+        <a href="#destaques" class="py-2 text-gray-700 hover:text-blue-600">Destaques</a>
+        <a href="#colecao" class="py-2 text-gray-700 hover:text-blue-600">Coleção</a>
+        <a href="#sobre" class="py-2 text-gray-700 hover:text-blue-600">Sobre Nós</a>
+        <a href="#contato" class="py-2 text-gray-700 hover:text-blue-600">Contato</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section text-white py-20">
+    <div class="container mx-auto px-4 flex flex-col items-start justify-center h-full">
+      <div class="editable" data-id="hero-title">
+        <h2 class="text-4xl md:text-5xl font-bold mb-4">Coleção Verão 2023</h2>
+      </div>
+      <div class="editable" data-id="hero-subtitle">
+        <p class="text-xl mb-8 max-w-lg">Descubra as peças exclusivas que vão renovar seu guarda-roupa nesta estação</p>
+      </div>
+      <div class="editable" data-id="hero-button">
+        <button class="bg-white text-blue-600 hover:bg-gray-100 px-6 py-3 rounded-full font-bold transition duration-300">
+                    Compre Agora
+                </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="py-12 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="flex flex-col items-center text-center editable" data-id="feature-1">
+          <div class="bg-blue-100 p-4 rounded-full mb-4">
+            <i class="fas fa-truck text-blue-600 text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-2">Frete Grátis</h3>
+          <p class="text-gray-600">Para compras acima de R$ 200 em todo o Brasil</p>
+        </div>
+        <div class="flex flex-col items-center text-center editable" data-id="feature-2">
+          <div class="bg-blue-100 p-4 rounded-full mb-4">
+            <i class="fas fa-exchange-alt text-blue-600 text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-2">Troca Fácil</h3>
+          <p class="text-gray-600">30 dias para trocar seu produto sem burocracia</p>
+        </div>
+        <div class="flex flex-col items-center text-center editable" data-id="feature-3">
+          <div class="bg-blue-100 p-4 rounded-full mb-4">
+            <i class="fas fa-lock text-blue-600 text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-2">Pagamento Seguro</h3>
+          <p class="text-gray-600">Processamento de pagamento 100% seguro</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Products -->
+  <section id="destaques" class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12 editable" data-id="featured-title">
+        <h2 class="text-3xl font-bold text-gray-800 mb-4">Destaques da Temporada</h2>
+        <p class="text-gray-600 max-w-2xl mx-auto">As peças mais desejadas da nossa coleção</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <!-- Product 1 -->
+        <div class="bg-white rounded-lg overflow-hidden shadow-md product-card transition duration-300 editable"
+          data-id="product-1">
+          <div class="relative">
+            <img src="https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Vestido Floral" class="w-full h-64 object-cover">
+            <div class="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full">NOVO
+            </div>
+          </div>
+          <div class="p-4">
+            <div class="flex justify-between items-start mb-2">
+              <h3 class="font-bold text-gray-800">Vestido Floral</h3>
+              <span class="font-bold text-blue-600">R$ 189,90</span>
+            </div>
+            <p class="text-gray-600 text-sm mb-4">Vestido midi com estampa floral e detalhes em renda</p>
+            <button class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-full font-medium transition duration-300">
+                            Adicionar ao Carrinho
+                        </button>
+          </div>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="bg-white rounded-lg overflow-hidden shadow-md product-card transition duration-300 editable"
+          data-id="product-2">
+          <div class="relative">
+            <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1636&q=80" alt="Jaqueta Jeans" class="w-full h-64 object-cover">
+          </div>
+          <div class="p-4">
+            <div class="flex justify-between items-start mb-2">
+              <h3 class="font-bold text-gray-800">Jaqueta Jeans</h3>
+              <span class="font-bold text-blue-600">R$ 229,90</span>
+            </div>
+            <p class="text-gray-600 text-sm mb-4">Jaqueta jeans clara com detalhes desbotados</p>
+            <button class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-full font-medium transition duration-300">
+                            Adicionar ao Carrinho
+                        </button>
+          </div>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="bg-white rounded-lg overflow-hidden shadow-md product-card transition duration-300 editable"
+          data-id="product-3">
+          <div class="relative">
+            <img src="https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1635&q=80" alt="Camiseta Básica" class="w-full h-64 object-cover">
+            <div class="absolute top-2 right-2 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded-full">MAIS
+              VENDIDO</div>
+          </div>
+          <div class="p-4">
+            <div class="flex justify-between items-start mb-2">
+              <h3 class="font-bold text-gray-800">Camiseta Básica</h3>
+              <span class="font-bold text-blue-600">R$ 59,90</span>
+            </div>
+            <p class="text-gray-600 text-sm mb-4">Camiseta 100% algodão em diversas cores</p>
+            <button class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-full font-medium transition duration-300">
+                            Adicionar ao Carrinho
+                        </button>
+          </div>
+        </div>
+
+        <!-- Product 4 -->
+        <div class="bg-white rounded-lg overflow-hidden shadow-md product-card transition duration-300 editable"
+          data-id="product-4">
+          <div class="relative">
+            <img src="https://images.unsplash.com/photo-1543076447-215ad9ba6923?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Calça Wide Leg" class="w-full h-64 object-cover">
+          </div>
+          <div class="p-4">
+            <div class="flex justify-between items-start mb-2">
+              <h3 class="font-bold text-gray-800">Calça Wide Leg</h3>
+              <span class="font-bold text-blue-600">R$ 159,90</span>
+            </div>
+            <p class="text-gray-600 text-sm mb-4">Calça de alfaiataria com modelagem ampla</p>
+            <button class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-full font-medium transition duration-300">
+                            Adicionar ao Carrinho
+                        </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-12 editable" data-id="featured-button">
+        <button class="border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-8 py-3 rounded-full font-bold transition duration-300">
+                    Ver Toda a Coleção
+                </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Collection Banner -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="bg-gray-100 rounded-xl overflow-hidden flex flex-col md:flex-row">
+        <div class="md:w-1/2 p-8 md:p-12 flex flex-col justify-center editable" data-id="collection-text">
+          <h2 class="text-3xl font-bold text-gray-800 mb-4">Coleção Outono/Inverno</h2>
+          <p class="text-gray-600 mb-6">Peças selecionadas para te aquecer com estilo nesta estação. Materiais premium e
+            designs atemporais.</p>
+          <button class="self-start bg-gray-800 hover:bg-black text-white px-6 py-3 rounded-full font-bold transition duration-300">
+                        Conheça a Coleção
+                    </button>
+        </div>
+        <div class="md:w-1/2 editable" data-id="collection-image">
+          <img src="https://images.unsplash.com/photo-1551232864-3f0890e580b9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Coleção Outono/Inverno" class="w-full h-full object-cover">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12 editable" data-id="testimonials-title">
+        <h2 class="text-3xl font-bold text-gray-800 mb-4">O Que Nossos Clientes Dizem</h2>
+        <p class="text-gray-600 max-w-2xl mx-auto">A satisfação dos nossos clientes é nossa maior recompensa</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-white p-6 rounded-lg shadow-sm editable" data-id="testimonial-1">
+          <div class="flex items-center mb-4">
+            <div class="text-yellow-400 mr-2">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+          </div>
+          <p class="text-gray-600 mb-4">"Comprei um vestido para um evento e recebi muitos elogios! A qualidade do
+            tecido e o caimento são perfeitos."</p>
+          <div class="flex items-center">
+            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Ana Silva" class="w-10 h-10 rounded-full mr-3">
+            <div>
+              <h4 class="font-bold text-gray-800">Ana Silva</h4>
+              <p class="text-gray-500 text-sm">São Paulo, SP</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow-sm editable" data-id="testimonial-2">
+          <div class="flex items-center mb-4">
+            <div class="text-yellow-400 mr-2">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+          </div>
+          <p class="text-gray-600 mb-4">"A jaqueta jeans superou minhas expectativas. O material é de ótima qualidade e
+            o atendimento foi excelente."</p>
+          <div class="flex items-center">
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Carlos Oliveira" class="w-10 h-10 rounded-full mr-3">
+            <div>
+              <h4 class="font-bold text-gray-800">Carlos Oliveira</h4>
+              <p class="text-gray-500 text-sm">Rio de Janeiro, RJ</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow-sm editable" data-id="testimonial-3">
+          <div class="flex items-center mb-4">
+            <div class="text-yellow-400 mr-2">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+            </div>
+          </div>
+          <p class="text-gray-600 mb-4">"Compro as camisetas básicas há anos e sempre mantêm a qualidade. Ótimo
+            custo-benefício e variedade de cores."</p>
+          <div class="flex items-center">
+            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Mariana Costa" class="w-10 h-10 rounded-full mr-3">
+            <div>
+              <h4 class="font-bold text-gray-800">Mariana Costa</h4>
+              <p class="text-gray-500 text-sm">Belo Horizonte, MG</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="py-16 bg-blue-600 text-white">
+    <div class="container mx-auto px-4 text-center">
+      <div class="max-w-2xl mx-auto editable" data-id="newsletter">
+        <h2 class="text-3xl font-bold mb-4">Receba Nossas Ofertas</h2>
+        <p class="mb-8">Cadastre-se para receber novidades, promoções exclusivas e 10% OFF na primeira compra!</p>
+        <form class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+          <input type="email" placeholder="Seu melhor e-mail" class="flex-grow px-4 py-3 rounded-full text-gray-800 focus:outline-none">
+          <button type="submit" class="bg-white text-blue-600 hover:bg-gray-100 px-6 py-3 rounded-full font-bold transition duration-300">
+                        Cadastrar
+                    </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white pt-12 pb-6">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+        <div class="editable" data-id="footer-about">
+          <h3 class="text-lg font-bold mb-4">Moda Elegante</h3>
+          <p class="text-gray-400">Desde 2010 oferecendo as melhores peças com qualidade e estilo para nossos clientes.
+          </p>
+        </div>
+
+        <div class="editable" data-id="footer-links">
+          <h3 class="text-lg font-bold mb-4">Links Úteis</h3>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-gray-400 hover:text-white transition">Minha Conta</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white transition">Meus Pedidos</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white transition">Trocas e Devoluções</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white transition">Política de Privacidade</a></li>
+          </ul>
+        </div>
+
+        <div class="editable" data-id="footer-contact">
+          <h3 class="text-lg font-bold mb-4">Contato</h3>
+          <ul class="space-y-2 text-gray-400">
+            <li class="flex items-center"><i class="fas fa-map-marker-alt mr-2"></i> Av. Paulista, 1000 - São Paulo, SP
+            </li>
+            <li class="flex items-center"><i class="fas fa-phone-alt mr-2"></i> (11) 1234-5678</li>
+            <li class="flex items-center"><i class="fas fa-envelope mr-2"></i> contato@modaelegante.com.br</li>
+          </ul>
+        </div>
+
+        <div class="editable" data-id="footer-social">
+          <h3 class="text-lg font-bold mb-4">Redes Sociais</h3>
+          <div class="flex space-x-4">
+            <a href="#"
+              class="bg-gray-700 hover:bg-blue-600 w-10 h-10 rounded-full flex items-center justify-center transition">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#"
+              class="bg-gray-700 hover:bg-pink-600 w-10 h-10 rounded-full flex items-center justify-center transition">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#"
+              class="bg-gray-700 hover:bg-blue-400 w-10 h-10 rounded-full flex items-center justify-center transition">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-800 pt-6 flex flex-col md:flex-row justify-between items-center">
+        <div class="text-gray-400 text-sm mb-4 md:mb-0 editable" data-id="footer-copyright">
+          &copy; 2023 Moda Elegante. Todos os direitos reservados.
+        </div>
+        <div class="flex space-x-6 editable" data-id="footer-payments">
+          <i class="fab fa-cc-visa text-2xl text-gray-400"></i>
+          <i class="fab fa-cc-mastercard text-2xl text-gray-400"></i>
+          <i class="fab fa-cc-amex text-2xl text-gray-400"></i>
+          <i class="fab fa-cc-paypal text-2xl text-gray-400"></i>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Edit Modal -->
+  <div id="editModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+    <div class="bg-white rounded-lg p-6 w-full max-w-md">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="text-xl font-bold">Editar Conteúdo</h3>
+        <button id="closeModal" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 mb-2">Conteúdo</label>
+        <textarea id="editContent" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" rows="5"></textarea>
+      </div>
+      <div class="flex justify-end space-x-3">
+        <button id="cancelEdit" class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-100">Cancelar</button>
+        <button id="saveEdit" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">Salvar</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Edit Mode Functionality
+        const editToggle = document.getElementById('editToggle');
+        const editModal = document.getElementById('editModal');
+        const editContent = document.getElementById('editContent');
+        const closeModal = document.getElementById('closeModal');
+        const cancelEdit = document.getElementById('cancelEdit');
+        const saveEdit = document.getElementById('saveEdit');
+        
+        let currentEditable = null;
+        
+        editToggle.addEventListener('change', (e) => {
+            const editables = document.querySelectorAll('.editable');
+            
+            if (e.target.checked) {
+                editables.forEach(el => {
+                    el.classList.add('edit-mode');
+                    
+                    // Create edit button
+                    const editBtn = document.createElement('div');
+                    editBtn.className = 'edit-btn';
+                    editBtn.innerHTML = '<i class="fas fa-pencil-alt"></i>';
+                    
+                    editBtn.addEventListener('click', () => {
+                        openEditModal(el);
+                    });
+                    
+                    el.appendChild(editBtn);
+                });
+            } else {
+                editables.forEach(el => {
+                    el.classList.remove('edit-mode');
+                    
+                    // Remove edit button
+                    const editBtn = el.querySelector('.edit-btn');
+                    if (editBtn) {
+                        el.removeChild(editBtn);
+                    }
+                });
+            }
+        });
+        
+        function openEditModal(element) {
+            currentEditable = element;
+            
+            // Get content to edit
+            let content = '';
+            if (element.tagName === 'IMG') {
+                content = element.src;
+            } else if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                content = element.value;
+            } else {
+                content = element.innerHTML;
+            }
+            
+            editContent.value = content;
+            editModal.classList.remove('hidden');
+        }
+        
+        function closeEditModal() {
+            editModal.classList.add('hidden');
+            currentEditable = null;
+        }
+        
+        closeModal.addEventListener('click', closeEditModal);
+        cancelEdit.addEventListener('click', closeEditModal);
+        
+        saveEdit.addEventListener('click', () => {
+            if (!currentEditable) return;
+            
+            const newContent = editContent.value;
+            
+            if (currentEditable.tagName === 'IMG') {
+                currentEditable.src = newContent;
+            } else if (currentEditable.tagName === 'INPUT' || currentEditable.tagName === 'TEXTAREA') {
+                currentEditable.value = newContent;
+            } else {
+                currentEditable.innerHTML = newContent;
+            }
+            
+          
+            closeEditModal();
+        });
+        
+        // Make images editable
+        document.querySelectorAll('img').forEach(img => {
+            img.dataset.id = 'image-' + Math.random().toString(36).substr(2, 9);
+            img.classList.add('editable');
+        });
+  </script>
+<p style="border-radius: 8px; text-align: center; font-size: 12px; color: #fff; margin-top: 16px;position: fixed; left: 8px; bottom: 8px; z-index: 10; background: rgba(0, 0, 0, 0.8); padding: 4px 8px;">Made with <img src="https://enzostvs-deepsite.hf.space/logo.svg" alt="DeepSite Logo" style="width: 16px; height: 16px; vertical-align: middle;display:inline-block;margin-right:3px;filter:brightness(0) invert(1);"><a href="https://enzostvs-deepsite.hf.space" style="color: #fff;text-decoration: underline;" target="_blank" >DeepSite</a> - 🧬 <a href="https://enzostvs-deepsite.hf.space?remix=Kauajdkfkcnfnnffnn/teste-site" style="color: #fff;text-decoration: underline;" target="_blank" >Remix</a></p></body>
